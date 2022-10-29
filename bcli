@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+## Bitcoin-CLI wrapper.
+## Useful for pre-configuring bitcoin-cli.
+
+pwd="$(pwd)"
+cookie="$pwd/data/regtest/.cookie"
+wallet="signet2" ## Put your own wallet here.
+config="-conf=$pwd/bitcoin.conf -rpcwallet=$wallet"
+
+## Main wrapper script.
+./bin/bitcoin-cli $config $@
