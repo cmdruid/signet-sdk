@@ -4,19 +4,19 @@
 
 ## Configurations
 PWD="$(pwd)"
-CLI="./bcli"
+CLI="./bcli -rpcwallet=signet"
 ADDR="$($CLI getnewaddress)"
 GRIND="$PWD/bin/bitcoin-util grind"
-NBITS="1d76b3ae" ## For adjusting mining time.
+NBITS="00000000" ## For adjusting mining time.
 miner="$PWD/src/miner"
 
 ## Controls the mining script.
 if [ "$1" = "init" ]; then
-  $miner --cli=$CLI generate --address $ADDR --grind-cmd="$GRIND" --nbits=$NBITS --set-block-time=$(date +%s)
+  $miner --cli="$CLI" generate --address $ADDR --grind-cmd="$GRIND" --nbits=$NBITS --set-block-time=$(date +%s)
 elif [ "$1" = "calibrate" ]; then
   echo "Calibrating to $2 seconds..."
   $miner calibrate --grind-cmd="$GRIND" --seconds=$2
 else
   echo "Starting miner..." > miner.log
-  $miner --cli=$CLI generate --address $ADDR --grind-cmd="$GRIND" --nbits=$NBITS --ongoing >> miner.log
+  $miner --cli="$CLI" generate --address $ADDR --grind-cmd="$GRIND" --nbits=$NBITS >> miner.log
 fi

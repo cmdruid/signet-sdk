@@ -3,7 +3,7 @@
 ## Useful for pre-configuring bitcoin-cli.
 
 pwd="$(pwd)"
-cookie="$pwd/data/regtest/.cookie"
+cookie="$pwd/data/signet/.cookie"
 wallet="signet2" ## Put your own wallet here.
 config="-conf=$pwd/bitcoin.conf -rpcwallet=$wallet"
 

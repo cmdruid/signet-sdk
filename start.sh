@@ -26,4 +26,4 @@ $bitcoind $config > /dev/null 2>&1; tail -f $logfile | while read line; do
 done
 
 ## Start mining script.
-./miner &
+# /miner &
